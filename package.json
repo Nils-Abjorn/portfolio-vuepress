@@ -7,7 +7,9 @@
   "author": "Nichlas W. Andersen",
   "license": "MIT",
   "dependencies": {
-    "vuepress": "^1.5.4",
-    "webpack-dev-middleware": "3.7.2"
+    "vuepress": "^1.8.2"
+  },
+  "devDependencies": {
+    "webpack-dev-middleware": "^5.2.2"
   }
 }

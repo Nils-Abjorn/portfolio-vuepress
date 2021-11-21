@@ -238,6 +238,10 @@
   }
 
   @media screen and (min-width: 600px) {
+    .header {
+      box-shadow: 0px 0px 10px rgb(212, 211, 211);
+      background-color: white;
+    }
     .desktop-nav {
       display: block;
     }

@@ -22,13 +22,8 @@ export default {
     letter-spacing: 0.1rem;
     width: 800px;
     max-width: 100%;
-    margin: 18vw auto 7vw auto;
+    margin: max(100px, 18vw) auto 7vw auto;
   }
 
-  @media screen and (min-width: 600px) {
-    .title {
-      margin: 12vw auto 7vw auto;
-    }
-  }
 
 </style>

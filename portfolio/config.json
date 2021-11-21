@@ -1,8 +1,8 @@
 {
-    "title": "Acme",
-    "description": "Creative Agency",
+    "title": "Nils Abjean",
+    "description": "Apprenti ingénieur logiciel",
     "logo": "/upload/logo.svg",
-    "footer": "Ⓒ Acme",
+    "footer": "",
     "favicon": "favicon-32x32.png",
     "navigation": [
       {
