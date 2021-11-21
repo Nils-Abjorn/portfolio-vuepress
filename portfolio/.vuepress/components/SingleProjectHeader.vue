@@ -13,7 +13,7 @@
 
     <div class="column">
       <Label class="label">Categories</Label>
-      <span class="value categories" v-for="category in categories" v-text="category" />
+      <span class="value categories" v-for="category in categories" :key="category" v-text="category" />
     </div>
 
   </div>
