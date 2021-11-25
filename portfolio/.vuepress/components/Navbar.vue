@@ -1,15 +1,5 @@
 <template>
-  <header
-    class="header"
-    :style="
-      sticky && {
-        position: 'fixed',
-        top: headerTop,
-        left: '0',
-        width: '100%',
-      }
-    "
-  >
+  <header class="header" :class="{ hidden: !showNavbar }">
     <nav v-if="navLinks" class="navigation left desktop-nav">
       <ul>
         <router-link
@@ -105,16 +95,13 @@ export default {
       type: String,
       required: false,
     },
-    sticky: {
-      type: Boolean,
-      required: false,
-    },
   },
   data() {
     return {
       mobileNavActive: false,
-      prevScrollpos: window.pageYOffset,
-      headerTop: "0",
+      showNavbar: true,
+      lastScrollPosition: 0,
+      scrollValue: "0",
     };
   },
   computed: {
@@ -127,13 +114,14 @@ export default {
       this.mobileNavActive = !this.mobileNavActive;
     },
     handleScroll(event) {
-      var currentScrollPos = window.pageYOffset;
-      if (this.prevScrollpos > currentScrollPos) {
-        this.headerTop = "0";
-      } else {
-        this.headerTop = "-500px";
+      if (window.pageYOffset < 0) {
+        return;
       }
-      this.prevScrollpos = currentScrollPos;
+      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 60) {
+        return;
+      }
+      this.showNavbar = window.pageYOffset < this.lastScrollPosition;
+      this.lastScrollPosition = window.pageYOffset;
     },
   },
 };
@@ -142,7 +130,6 @@ export default {
 <style scoped>
 .header {
   display: flex;
-  position: relative;
   align-items: center;
   justify-content: space-between;
   height: 6rem;
@@ -150,7 +137,16 @@ export default {
   font-size: max(16px, 1.5vw);
   font-weight: 600;
   z-index: 10;
-  transition: top 0.4s;
+  position: fixed;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+  transition: 0.3s all ease-out;
+  top: 0;
+}
+
+.header.hidden {
+  box-shadow: none;
+  transform: translate3d(0, -100%, 0);
 }
 
 .logo {
