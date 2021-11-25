@@ -1,5 +1,5 @@
 <template>
-  <header class="header" :class="{ hidden: !showNavbar }">
+  <header class="header" :class="{ hidden: !showNavbar && !mobileNavActive }">
     <nav v-if="navLinks" class="navigation left desktop-nav">
       <ul>
         <router-link
@@ -101,7 +101,6 @@ export default {
       mobileNavActive: false,
       showNavbar: true,
       lastScrollPosition: 0,
-      scrollValue: "0",
     };
   },
   computed: {
@@ -208,7 +207,7 @@ a:visited {
   height: 100vh;
   padding: 2rem;
   transform: translateY(-100%);
-  transition: transform 0.35s ease-in-out;
+  transition: transform 0.5s ease-in-out;
   text-align: center;
   font-size: 2rem;
   display: flex;
