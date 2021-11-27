@@ -53,8 +53,7 @@
         </li>
       </ul>
     </nav>
-
-    <div class="mobile-nav-toggle" @click="toggleMobileNav" />
+    <Hamburger class="mobile-nav-toggle" @toggle="toggleMobileNav" />
     <div class="mobile-nav" :class="{ 'mobile-nav--active': mobileNavActive }">
       <nav>
         <ul @click="toggleMobileNav">
@@ -83,7 +82,9 @@
 </template>
 
 <script>
+import hamburger from "./hamburger.vue";
 export default {
+  components: { hamburger },
   created() {
     window.addEventListener("scroll", this.handleScroll);
   },
@@ -109,8 +110,8 @@ export default {
     },
   },
   methods: {
-    toggleMobileNav() {
-      this.mobileNavActive = !this.mobileNavActive;
+    toggleMobileNav(hamburgerOpen) {
+      this.mobileNavActive = hamburgerOpen;
     },
     handleScroll(event) {
       if (window.pageYOffset < 0) {
@@ -131,9 +132,10 @@ export default {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 6rem;
-  padding: 5vw;
-  font-size: max(16px, 1.5vw);
+  height: var(--space-3xl);
+  padding-left: var(--space-screen-border);
+  padding-right: var(--space-screen-border);
+  font-size: var(--space-m);
   font-weight: 600;
   z-index: 10;
   position: fixed;
@@ -150,7 +152,7 @@ export default {
 
 .logo {
   position: absolute;
-  width: max(50px, 8vw);
+  width: var(--space-xxl);
   height: max(50px, 8vw);
   background-size: contain;
   background-position: center;
@@ -174,11 +176,11 @@ export default {
 }
 
 .navigation li:hover {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-black);
 }
 
 .active {
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid var(--color-black);
 }
 
 a {
@@ -230,37 +232,18 @@ a:visited {
   transform: translateY(0);
 }
 
-.mobile-nav-close {
-  position: absolute;
-  content: "";
-  right: 0;
-  top: 0;
-  width: 3rem;
-  height: 3rem;
-  padding: 3rem;
-  background-image: url("/close.svg");
-  background-position: center;
-  background-size: 1.5rem;
-  background-repeat: no-repeat;
-  transition: opacity 0.15s;
-  cursor: pointer;
-}
-
 .mobile-nav-toggle {
   display: block;
-  width: 3rem;
-  height: 3rem;
-  background-image: url("/burger.svg");
-  background-position: center;
-  background-size: 1.5rem;
-  background-repeat: no-repeat;
+  width: var(--space-xl);
+  height: var(--space-xl);
   transition: opacity 0.15s;
   cursor: pointer;
-}
-
-.mobile-nav-toggle:hover,
-.mobile-nav-close:hover {
-  opacity: 0.6;
+  fill: none;
+  stroke: var(--color-black);
+  stroke-miterlimit: 10;
+  stroke-width: 10;
+  stroke-linecap: round;
+  z-index: 11;
 }
 
 @media screen and (min-width: 600px) {
