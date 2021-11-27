@@ -53,7 +53,6 @@
         </li>
       </ul>
     </nav>
-    <Test />
     <Hamburger class="mobile-nav-toggle" @toggle="toggleMobileNav" />
     <div class="mobile-nav" :class="{ 'mobile-nav--active': mobileNavActive }">
       <nav>
