@@ -86,10 +86,14 @@ import hamburger from "./hamburger.vue";
 export default {
   components: { hamburger },
   created() {
-    window.addEventListener("scroll", this.handleScroll);
+    if (typeof window !== "undefined") {
+      window.addEventListener("scroll", this.handleScroll);
+    }
   },
   destroyed() {
-    window.removeEventListener("scroll", this.handleScroll);
+    if (typeof window !== "undefined") {
+      window.removeEventListener("scroll", this.handleScroll);
+    }
   },
   props: {
     logo: {
@@ -114,14 +118,16 @@ export default {
       this.mobileNavActive = hamburgerOpen;
     },
     handleScroll(event) {
-      if (window.pageYOffset < 0) {
-        return;
+      if (typeof window !== "undefined") {
+        if (window.pageYOffset < 0) {
+          return;
+        }
+        if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 60) {
+          return;
+        }
+        this.showNavbar = window.pageYOffset < this.lastScrollPosition;
+        this.lastScrollPosition = window.pageYOffset;
       }
-      if (Math.abs(window.pageYOffset - this.lastScrollPosition) < 60) {
-        return;
-      }
-      this.showNavbar = window.pageYOffset < this.lastScrollPosition;
-      this.lastScrollPosition = window.pageYOffset;
     },
   },
 };
