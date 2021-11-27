@@ -38,8 +38,8 @@
 <script>
 export default {
   props: {
-    logo: {
-      toggle: Boolean,
+    toggle: {
+      type: Boolean,
       required: true,
     },
   },
