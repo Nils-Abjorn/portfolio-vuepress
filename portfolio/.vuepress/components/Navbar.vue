@@ -82,9 +82,7 @@
 </template>
 
 <script>
-import hamburger from "./hamburger.vue";
 export default {
-  components: { hamburger },
   created() {
     if (typeof window !== "undefined") {
       window.addEventListener("scroll", this.handleScroll);
