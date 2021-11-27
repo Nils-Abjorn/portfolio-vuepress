@@ -4,8 +4,8 @@
     "build": "vuepress build portfolio",
     "develop": "vuepress dev portfolio"
   },
-  "author": "Nichlas W. Andersen",
-  "license": "MIT",
+  "author": "Nils Abjean",
+  "license": "",
   "dependencies": {
     "vuepress": "^1.8.2"
   },
